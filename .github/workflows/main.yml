@@ -39,3 +39,6 @@ jobs:
 
       - name: Check version
         run: python -m poetry show 
+
+      - name: Generate pages
+        run: python -m poetry run python src/main.py

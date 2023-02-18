@@ -5,7 +5,7 @@ on:
   # Git push develop
   push:
     branches:
-      - feature/habr-example
+      - feature/develop
 
   # Each day on 00:00 UTC
   # https://crontab.guru/every-day

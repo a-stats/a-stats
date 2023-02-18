@@ -1,0 +1,41 @@
+name: Main Workflow (Python)
+
+# События, запускающие процесс
+on:
+  # Git push develop
+  push:
+    branches:
+      - feature/habr-example
+
+  # Each day on 00:00 UTC
+  # https://crontab.guru/every-day
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  # job title
+  Main-Job-Python:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Get the repository code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Install Python 3.9
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      # Install and configure python environment using Poetry
+      - name: Install poetry
+        run: python -m pip install poetry==1.3.2
+ 
+      - name: Configure poetry
+        run: python -m poetry config virtualenvs.in-project true
+ 
+      - name: Install dependencies
+        run: python -m poetry install
+
+      - name: Check version
+        run: python -m poetry show 

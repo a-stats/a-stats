@@ -41,6 +41,12 @@ jobs:
 
       - name: Generate pages
         run: python -m poetry run python src/main.py
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./docs
+
   # Deployment job
   deploy:
     environment:
